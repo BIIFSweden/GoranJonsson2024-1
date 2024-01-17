@@ -2,6 +2,9 @@ ARG TENSORFLOW_VERSION=2.15.0.post1
 FROM tensorflow/tensorflow:${TENSORFLOW_VERSION}-gpu-jupyter AS jupyter
 ARG TENSORFLOW_VERSION
 
+RUN mkdir /data
+WORKDIR /data
+
 
 FROM jupyter AS qupath
 ARG QUPATH_VERSION=0.5.0
