@@ -29,7 +29,7 @@ Using the Command Prompt/PowerShell:
 5. Within the Podman machine, generate a [CDI](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html) specification and check the names of the generated devices:  
     `sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml`  
     `nvidia-ctk cdi list`
-6. Note down the GPU device name (e.g., `nvidia.com/gpu=all`) and exit the Podman machine:  
+6. Note down the GPU device name (e.g., "nvidia.com/gpu=all") and exit the Podman machine:  
     `exit`
 
 ## Usage
