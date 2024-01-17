@@ -1,6 +1,6 @@
 # GoranJonsson2024-1
 
-GPU-enabled containers for Jupyter and QuPath
+Run GPU-enabled containers for Jupyter Lab and QuPath using Podman
 
 ## Prerequisites
 
@@ -16,43 +16,43 @@ Using the Command Prompt/PowerShell:
 1. Create a new Podman machine:  
     `podman machine init`
 
-2. Connect to the Podman machine:  
+2. Start the Podman machine:  
+    `podman machine start`
+
+3. Connect to the Podman machine:  
     `podman machine ssh`
 
-3. Within the Podman machine, install the [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html):  
-    `curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | sudo tee /etc/yum.repos.d/nvidia-container-toolkit.repo`
+4. Within the Podman machine, install the [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html):  
+    `curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | sudo tee /etc/yum.repos.d/nvidia-container-toolkit.repo`  
     `sudo yum install -y nvidia-container-toolkit`
 
-4. Within the Podman machine, generate a [CDI](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html) specification and check the names of the generated devices:
-    `sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml`
+5. Within the Podman machine, generate a [CDI](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html) specification and check the names of the generated devices:  
+    `sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml`  
     `nvidia-ctk cdi list`
-4. Note down the GPU device name (e.g., `nvidia.com/gpu=all`)
+6. Note down the GPU device name (e.g., `nvidia.com/gpu=all`) and exit the Podman machine:  
+    `exit`
 
 ## Usage
 
-### Jupyter
+### Jupyter Lab
 
 1. Start the Podman machine (Command Prompt/PowerShell):  
     `podman machine start`
 
-2. Run the Jupyter container (Command Prompt/PowerShell):  
+2. Run the Jupyter Lab container (Command Prompt/PowerShell):  
     `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -p 8888:8888 --rm ghcr.io/biifsweden/goranjonsson2024-1-jupyter`
     - Replace `nvidia.com/gpu=all` with your GPU device name
     - Replace `C:\Users\USERNAME` with the path to your home directory
 
+3. Open Jupyter Lab by clicking on the link containing "127.0.0.1"
+
+4. To stop the Jupyter Lab container, in Jupyter Lab, click File -> Shut down
+
 ### QuPath
 
-1. Launch `XLaunch`
-    ```
-    Multiple windows
-    Display number: 0
-    Start no client
-    Clipboard: yes
-    Primary Selection: yes
-    Native opengl: yes
-    Disable access control: yes
-    Additional parameters:
-    ```
+1. Download and double-click the [config.xlaunch](config.xlaunch) file to start VcXsrv
+    - Allow all Windows Defender Firewall requests that may appear (tick all checkboxes)
+    - If no Windows Defender Firewall requests appear, open the Windows Defender Firewall -> click on "Allow an app or feature through Windows Defender Firewall" -> click on "Change settings" -> tick all checkboxes next to BOTH entries of "VcXsrv windows xserver" -> click "OK"
 
 2. Start the Podman machine (Command Prompt/PowerShell):  
     `podman machine start`
@@ -61,7 +61,9 @@ Using the Command Prompt/PowerShell:
     `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -e DISPLAY=$(hostname).internal:0 --rm ghcr.io/biifsweden/goranjonsson2024-1-qupath`
     - Replace `nvidia.com/gpu=all` with your GPU device name
     - Replace `C:\Users\USERNAME` with the path to your home directory
-    
+
+4. To stop the QuPath container, simply close QuPath; exit VcXsrv via the System Tray
+
 ## License
 
 [MIT](LICENSE)

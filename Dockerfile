@@ -5,6 +5,8 @@ ARG TENSORFLOW_VERSION
 RUN mkdir /data
 WORKDIR /data
 
+CMD ["bash", "-c", "source /etc/bash.bashrc && jupyter lab --notebook-dir=/data --ip 0.0.0.0 --no-browser --allow-root"]
+
 
 FROM jupyter AS qupath
 ARG QUPATH_VERSION=0.5.0
