@@ -39,14 +39,17 @@ Using the Command Prompt/PowerShell:
 1. Start the Podman machine (Command Prompt/PowerShell):  
     `podman machine start`
 
-2. Run the Jupyter Lab container (Command Prompt/PowerShell):  
+2. Pull the latest version of the Jupyter Lab container (Command Prompt/PowerShell):  
+    `podman pull ghcr.io/biifsweden/goranjonsson2024-1-jupyter`
+
+3. Run the Jupyter Lab container (Command Prompt/PowerShell):  
     `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -p 8888:8888 --rm ghcr.io/biifsweden/goranjonsson2024-1-jupyter`
     - Replace `nvidia.com/gpu=all` with your GPU device name
     - Replace `C:\Users\USERNAME` with the path to your home directory
 
-3. Open Jupyter Lab by clicking on the link containing "127.0.0.1"
+4. Open Jupyter Lab by clicking on the link containing "127.0.0.1"
 
-4. To stop the Jupyter Lab container, in Jupyter Lab, click File -> Shut down
+5. To stop the Jupyter Lab container, in Jupyter Lab, click File -> Shut down
 
 ### QuPath
 
@@ -57,12 +60,15 @@ Using the Command Prompt/PowerShell:
 2. Start the Podman machine (Command Prompt/PowerShell):  
     `podman machine start`
 
-3. Run the QuPath container (Command Prompt/PowerShell):  
+3. Pull the latest version of the QuPath container (Command Prompt/PowerShell):  
+    `podman pull ghcr.io/biifsweden/goranjonsson2024-1-qupath`
+
+4. Run the QuPath container (Command Prompt/PowerShell):  
     `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -e DISPLAY=$(hostname).local:0 --rm ghcr.io/biifsweden/goranjonsson2024-1-qupath`
     - Replace `nvidia.com/gpu=all` with your GPU device name
     - Replace `C:\Users\USERNAME` with the path to your home directory
 
-4. To stop the QuPath container, simply close QuPath; exit VcXsrv via the System Tray
+5. To stop the QuPath container, simply close QuPath; exit VcXsrv via the System Tray
 
 **Notes**:
 - The QuPath window is very large initially; it is recommended to maximize it by dragging the window to the top border of the screen
