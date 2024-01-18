@@ -58,7 +58,7 @@ Using the Command Prompt/PowerShell:
     `podman machine start`
 
 3. Run the QuPath container (Command Prompt/PowerShell):  
-    `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -e DISPLAY=$(hostname).internal:0 --rm ghcr.io/biifsweden/goranjonsson2024-1-qupath`
+    `podman run --device nvidia.com/gpu=all -v C:\Users\USERNAME:/data -e DISPLAY=$(hostname).local:0 --rm ghcr.io/biifsweden/goranjonsson2024-1-qupath`
     - Replace `nvidia.com/gpu=all` with your GPU device name
     - Replace `C:\Users\USERNAME` with the path to your home directory
 
