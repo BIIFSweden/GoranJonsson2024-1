@@ -12,7 +12,7 @@ FROM jupyter AS qupath
 ARG QUPATH_VERSION=0.5.0
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y wget xauth xorg openbox
+    DEBIAN_FRONTEND=noninteractive apt-get install -y wget xorg
     
 RUN wget -q https://github.com/qupath/qupath/releases/download/v${QUPATH_VERSION}/QuPath-v${QUPATH_VERSION}-Linux.tar.xz && \
     tar -xf QuPath-v${QUPATH_VERSION}-Linux.tar.xz -C /opt && \
@@ -20,4 +20,4 @@ RUN wget -q https://github.com/qupath/qupath/releases/download/v${QUPATH_VERSION
     chmod +x /opt/QuPath/bin/QuPath && \
     ln -s /opt/QuPath/bin/QuPath /usr/local/bin/QuPath
 
-ENTRYPOINT [ "QuPath" ]
+CMD ["bash", "-c", "source /etc/bash.bashrc && QuPath"]
