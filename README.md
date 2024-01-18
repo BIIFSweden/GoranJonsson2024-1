@@ -64,6 +64,10 @@ Using the Command Prompt/PowerShell:
 
 4. To stop the QuPath container, simply close QuPath; exit VcXsrv via the System Tray
 
+**Notes**:
+- The QuPath window is very large initially; it is recommended to maximize it by dragging the window to the top border of the screen
+- Due to a [bug in OpenJDK/JavaFX](https://bugs.openjdk.org/browse/JDK-8237454), the QuPath menu has a glitch; to open a menu (e.g., the "File" menu), press and hold the menu item (e.g., "File"), move the cursor over a toolbar button below (e.g., the "Move tool" button) and release the mouse button
+
 ## License
 
 [MIT](LICENSE)
